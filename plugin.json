@@ -1,0 +1,34 @@
+{
+  "id": "armor-break",
+  "name": "破甲（提示词补丁）",
+  "version": "1.0.0",
+  "apiVersion": 1,
+  "category": "model",
+  "description": "在发给模型的 messages 落地前重写 system 段：剥离核心安全规则块，并注入管理员补丁段。不改源码，升级不冲突，热重载生效。",
+  "author": "YG",
+  "enabledByDefault": false,
+  "capabilities": [],
+  "requires": [],
+  "settings": {
+    "mode": "replace",
+    "patch": "",
+    "log": false
+  },
+  "configSchema": {
+    "mode": {
+      "type": "string",
+      "label": "破甲模式",
+      "description": "replace = 删掉安全规则块并写入补丁段；strip = 只删不补；append = 只补不删；off = 关闭。"
+    },
+    "patch": {
+      "type": "string",
+      "label": "补丁正文（留空用内置默认）",
+      "description": "注入到 system 末尾的管理员补丁段正文。"
+    },
+    "log": {
+      "type": "boolean",
+      "label": "打印命中日志",
+      "description": "每次改写后输出一行 [armor-break] 日志，便于确认插件真的跑到了。"
+    }
+  }
+}
